@@ -20,6 +20,7 @@ local config = function()
 
     L = {
       name = "Lazy",
+      h = { "<cmd>Lazy home<cr>", "Home" },
       i = { "<cmd>Lazy install<cr>", "Install" },
       s = { "<cmd>Lazy sync<cr>", "Sync" },
       u = { "<cmd>Lazy update<cr>", "Update" },
