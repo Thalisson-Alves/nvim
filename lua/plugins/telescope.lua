@@ -2,6 +2,7 @@ local config = function()
 	local telescope = require("telescope")
 	telescope.setup({
 		defaults = {
+      path_display = { "smart" },
 			mappings = {
 				i = {
 					["<C-j>"] = "move_selection_next",
