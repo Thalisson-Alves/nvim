@@ -2,6 +2,7 @@ local config = function()
   local wk = require("which-key")
 
   local mappings = {
+    ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
     ["b"] = {
       "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
       "Buffers",

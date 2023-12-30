@@ -1,8 +1,8 @@
 local on_attach = function(client, bufnr)
   local opts = { noremap = true, silent = true }
   local keymap = vim.api.nvim_buf_set_keymap
-  keymap(bufnr, "n", "gD", "<cmd>Lspsaga goto_definition<CR>", opts)
-  keymap(bufnr, "n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts)
+  keymap(bufnr, "n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
+  keymap(bufnr, "n", "gp", "<cmd>Lspsaga peek_definition<CR>", opts)
   keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
   keymap(bufnr, "n", "gr", "<cmd>Lspsaga finder<CR>", opts)
   keymap(bufnr, "n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
