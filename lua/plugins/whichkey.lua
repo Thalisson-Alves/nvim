@@ -7,7 +7,7 @@ local config = function()
       "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
       "Buffers",
     },
-    ["e"] = { "<cmd>Neotree toggle<cr>", "Explorer" },
+    ["e"] = { "<cmd>lua require('neo-tree.command').execute({ toggle = true })<cr>", "Explorer" },
     ["w"] = { "<cmd>w!<cr>", "Save" },
     ["q"] = { "<cmd>q!<cr>", "Quit" },
     ["c"] = { "<cmd>bdelete!<cr>", "Close buffer" },
@@ -17,7 +17,6 @@ local config = function()
       "Find files",
     },
     ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-    ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 
     L = {
       name = "Lazy",
