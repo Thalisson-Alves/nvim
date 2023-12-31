@@ -1,6 +1,5 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  lazy = false,
   branch = "v3.x",
   requires = {
     "nvim-lua/plenary.nvim",
@@ -25,13 +24,21 @@ return {
     },
     default_component_configs = {
       indent = {
-        with_expanders = true,   -- if nil and file nesting is enabled, will enable expanders
+        with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
         expander_collapsed = "",
         expander_expanded = "",
         expander_highlight = "NeoTreeExpander",
       },
     },
   },
+  init = function()
+    if vim.fn.argc(-1) == 1 then
+      local stat = vim.loop.fs_stat(vim.fn.argv(0))
+      if stat and stat.type == "directory" then
+        require("neo-tree")
+      end
+    end
+  end,
   config = function(_, opts)
     require("neo-tree").setup(opts)
     vim.api.nvim_create_autocmd("TermClose", {
