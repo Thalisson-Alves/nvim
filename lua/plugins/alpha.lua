@@ -9,6 +9,11 @@ return {
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
 
+    function _GOTO_FILE(filepath)
+      vim.api.nvim_set_current_dir(vim.fn.fnamemodify(filepath, ':h:p'))
+      vim.cmd('e ' .. filepath)
+    end
+
     dashboard.section.header.val = {
       [[                                                                       ]],
       [[                                                                       ]],
@@ -30,13 +35,12 @@ return {
       [[                                                                       ]],
     }
     dashboard.section.buttons.val = {
-      dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
-      dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-      dashboard.button("p", "  Find project", ":Telescope projects <CR>"),
-      dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
-      dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
-      dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
-      dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+      dashboard.button("f", "  Find file", "<cmd>Telescope find_files<CR>"),
+      dashboard.button("e", "  New file", "<cmd>ene <BAR> startinsert<CR>"),
+      dashboard.button("r", "  Recently used files", "<cmd>Telescope oldfiles<CR>"),
+      dashboard.button("t", "  Find text", "<cmd>Telescope live_grep<CR>"),
+      dashboard.button("c", "  Configuration", "<cmd>lua _GOTO_FILE(os.getenv('MYVIMRC'))<CR>"),
+      dashboard.button("q", "  Quit Neovim", "<cmd>qa<CR>"),
     }
 
     dashboard.section.footer.opts.hl = "Type"
