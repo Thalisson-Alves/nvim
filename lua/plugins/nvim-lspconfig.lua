@@ -1,4 +1,4 @@
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   local opts = { noremap = true, silent = true }
   local keymap = vim.api.nvim_buf_set_keymap
   keymap(bufnr, "n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
@@ -79,6 +79,49 @@ local config = function()
           -- typeCheckingMode = "on",
         },
       },
+    },
+  })
+
+  -- rust
+  lspconfig.rust_analyzer.setup({
+    checkOnSave = {
+      command = "clippy",
+    },
+    cargo = {
+      loadOutDirsFromCheck = true,
+    },
+    procMacro = {
+      enable = true,
+    },
+    assist = {
+      importMergeBehavior = "last",
+      importPrefix = "by_self",
+    },
+    -- diagnostics = {
+    -- 	disabled = { "unresolved-proc-macro" },
+    -- },
+    inlayHints = {
+      chainingHints = true,
+      typeHints = true,
+      parameterHints = true,
+      maxLength = 120,
+    },
+    hoverActions = {
+      linksInHover = true,
+    },
+    lens = {
+      methodReferences = true,
+      references = true,
+      implementations = true,
+      run = true,
+      debug = true,
+    },
+    cargoWatch = {
+      enable = true,
+      args = { "--all-targets" },
+    },
+    experimental = {
+      procAttrMacros = true,
     },
   })
 
