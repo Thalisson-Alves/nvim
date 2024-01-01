@@ -2,6 +2,7 @@ local config = function()
   local cmp = require("cmp")
   local luasnip = require("luasnip")
   local lspkind = require("lspkind")
+  local ts_utils = require("nvim-treesitter.ts_utils")
 
   require("luasnip/loaders/from_vscode").lazy_load({ include = { "c", "cpp", "python" } })
 
@@ -28,7 +29,29 @@ local config = function()
     }),
     -- sources for autocompletion
     sources = cmp.config.sources({
-      { name = "nvim_lsp" }, -- lsp
+      {
+        name = "nvim_lsp",
+        entry_filter = function(entry, context)
+          local kind = entry:get_kind()
+
+          local line = context.cursor_line
+          local col = context.cursor.col
+          local ch = string.sub(line, col - 1, col - 1)
+
+          if ch == "." then
+            return kind == 2 or kind == 5
+          elseif string.match(line, "^%s*%w*$") then
+            return kind == 3 or kind == 6
+          end
+
+          local node = ts_utils.get_node_at_cursor():type()
+          if node == "arguments" then
+            return kind == 6
+          end
+
+          return true
+        end,
+      }, -- lsp
       { name = "luasnip" },  -- snippets
       { name = "buffer" },   -- text within current buffer
       { name = "path" },     -- file system paths
