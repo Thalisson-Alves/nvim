@@ -9,11 +9,6 @@ return {
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
 
-    function _GOTO_FILE(filepath)
-      vim.api.nvim_set_current_dir(vim.fn.fnamemodify(filepath, ':h:p'))
-      vim.cmd('e ' .. filepath)
-    end
-
     dashboard.section.header.val = {
       [[                                                                       ]],
       [[                                                                       ]],
