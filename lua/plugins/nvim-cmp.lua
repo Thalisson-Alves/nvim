@@ -2,6 +2,7 @@ local config = function()
   local cmp = require("cmp")
   local luasnip = require("luasnip")
   local lspkind = require("lspkind")
+  local ts_utils = require("nvim-treesitter.ts_utils")
 
   require("luasnip/loaders/from_vscode").lazy_load({ include = { "c", "cpp", "python" } })
 
