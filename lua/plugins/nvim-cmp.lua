@@ -33,7 +33,7 @@ local config = function()
       { name = "luasnip" },  -- snippets
       { name = "buffer" },   -- text within current buffer
       { name = "path" },     -- file system paths
-      -- { name = "crates" }, -- crates plugin
+      { name = "crates" },   -- crates plugin
     }),
     -- configure lspkind for vs-code like icons
     formatting = {

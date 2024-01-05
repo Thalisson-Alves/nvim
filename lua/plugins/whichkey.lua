@@ -61,11 +61,11 @@ local config = function()
       f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
       i = { "<cmd>LspInfo<cr>", "Info" },
       j = {
-        "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
+        "<cmd>Lspsaga diagnostic_jump_prev<cr>",
         "Next Diagnostic",
       },
       k = {
-        "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
+        "<cmd>Lspsaga diagnostic_jump_next<cr>",
         "Prev Diagnostic",
       },
       l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
