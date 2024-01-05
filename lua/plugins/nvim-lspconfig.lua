@@ -7,6 +7,9 @@ local on_attach = function(_, bufnr)
   keymap(bufnr, "n", "gr", "<cmd>Lspsaga finder<CR>", opts)
   keymap(bufnr, "n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
   keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{}<cr>", opts)
+  keymap(bufnr, "v", "<leader>lf",
+    "<cmd>lua vim.lsp.buf.format{range={['start']=vim.api.nvim_buf_get_mark(0,'<'),['end']=vim.api.nvim_buf_get_mark(0,'>')}}<cr>",
+    opts)
   keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", opts)
   keymap(bufnr, "n", "<leader>lI", "<cmd>LspInstallInfo<cr>", opts)
   keymap(bufnr, "n", "<leader>la", "<cmd>Lspsaga code_action<cr>", opts)
