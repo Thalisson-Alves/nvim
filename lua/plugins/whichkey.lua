@@ -44,10 +44,7 @@ local config = function()
       o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
       b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
       c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-      d = {
-        "<cmd>Gitsigns diffthis HEAD<cr>",
-        "Diff",
-      },
+      d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
     },
 
     l = {
@@ -62,9 +59,7 @@ local config = function()
         "Workspace Diagnostics",
       },
       f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
-      F = { "<cmd>lua _ToggleAutoFormat()<cr>", "Toggle auto format" },
       i = { "<cmd>LspInfo<cr>", "Info" },
-      I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
       j = {
         "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
         "Next Diagnostic",
