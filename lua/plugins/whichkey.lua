@@ -2,10 +2,10 @@ local config = function()
   local wk = require("which-key")
 
   local mappings = {
-    ["w"] = { "<cmd>w!<cr>", "Save" },
-    ["q"] = { "<cmd>q!<cr>", "Quit" },
-    ["c"] = { "<cmd>bdelete!<cr>", "Close buffer" },
-    ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+    w = { "<cmd>w!<cr>", "Save" },
+    q = { "<cmd>q!<cr>", "Quit" },
+    c = { "<cmd>bdelete!<cr>", "Close buffer" },
+    h = { "<cmd>nohlsearch<CR>", "No Highlight" },
     L = { "<cmd> Lazy<cr>", "Lazy" },
     g = { name = "+Git" },
     l = { name = "+LSP" },
