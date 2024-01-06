@@ -81,6 +81,8 @@ local config = function()
 
   -- rust
   lspconfig.rust_analyzer.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
     checkOnSave = {
       command = "clippy",
     },
