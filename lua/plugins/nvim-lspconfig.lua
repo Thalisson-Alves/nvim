@@ -1,30 +1,24 @@
 local on_attach = function(_, bufnr)
   local opts = { noremap = true, silent = true }
-  local keymap = vim.api.nvim_buf_set_keymap
-  keymap(bufnr, "n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
-  keymap(bufnr, "n", "gp", "<cmd>Lspsaga peek_definition<CR>", opts)
-  keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
-  keymap(bufnr, "n", "gr", "<cmd>Lspsaga finder<CR>", opts)
-  keymap(bufnr, "n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
-  keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{}<cr>", opts)
-  keymap(bufnr, "v", "<leader>lf",
+  local function map(mode, lhs, rhs, opt)
+    vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, vim.tbl_deep_extend("keep", opt, opts))
+  end
+  map("n", "gd", "<cmd>Lspsaga goto_definition<CR>", { desc = "Go to definition" })
+  map("n", "gp", "<cmd>Lspsaga peek_definition<CR>", { desc = "Peek definition" })
+  map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { desc = "Hover doc" })
+  map("n", "gr", "<cmd>Lspsaga finder<CR>", { desc = "References" })
+  map("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", { desc = "Line diagnostics" })
+  map("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{}<cr>", { desc = "Format" })
+  map("v", "<leader>lf",
     "<cmd>lua vim.lsp.buf.format{range={['start']=vim.api.nvim_buf_get_mark(0,'<'),['end']=vim.api.nvim_buf_get_mark(0,'>')}}<cr>",
-    opts)
-  keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", opts)
-  keymap(bufnr, "n", "<leader>lI", "<cmd>LspInstallInfo<cr>", opts)
-  keymap(bufnr, "n", "<leader>la", "<cmd>Lspsaga code_action<cr>", opts)
-  keymap(bufnr, "n", "<leader>lj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
-  keymap(bufnr, "n", "<leader>lk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
-  keymap(bufnr, "n", "<leader>lr", "<cmd>Lspsaga rename<cr>", opts)
-  keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-
-  -- if client.name == "pyright" then
-  -- 	keymap(bufnr, "n", "<leader>oi", "PyrightOrganizeImports", "n", opts) -- organise imports
-  -- 	keymap(bufnr, "n", "<leader>db", "DapToggleBreakpoint", "n", opts) -- toggle breakpoint
-  -- 	keymap(bufnr, "n", "<leader>dr", "DapContinue", "n", opts) -- continue/invoke debugger
-  -- 	keymap(bufnr, "n", "<leader>dt", "lua require('dap-python').test_method()", "n", opts) -- run tests
-  -- end
+    { desc = "Format" })
+  map("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Lsp info" })
+  map("n", "<leader>la", "<cmd>Lspsaga code_action<cr>", { desc = "Code action" })
+  map("n", "<leader>lj", "<cmd>Lspsaga diagnostic_jump_next<cr>", { desc = "Next diagnostic" })
+  map("n", "<leader>lk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", { desc = "Prev diagnostic" })
+  map("n", "<leader>lr", "<cmd>Lspsaga rename<cr>", { desc = "Rename" })
+  map("n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { desc = "Signature help" })
+  map("n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", { desc = "Quickfix" })
 end
 local diagnostic_signs = { Error = "", Warn = "", Hint = "", Info = "" }
 

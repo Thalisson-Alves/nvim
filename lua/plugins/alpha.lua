@@ -4,7 +4,9 @@ return {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
-
+  keys = {
+    {"<leader>a", "<cmd>Alpha<cr>", desc = "Alpha"},
+  },
   config = function()
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")

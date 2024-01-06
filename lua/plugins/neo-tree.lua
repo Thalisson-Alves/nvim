@@ -50,4 +50,7 @@ return {
       end,
     })
   end,
+  keys = {
+    {"<leader>e", "<cmd>Neotree toggle<cr>", desc = "Neotree"},
+  },
 }
