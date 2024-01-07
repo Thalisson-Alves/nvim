@@ -12,10 +12,9 @@ local config = function()
     s = { name = "+Search" },
     t = {
       name = "+Terminal",
-      n = { "<cmd>Lspsaga term_toggle node<cr>", "Node" },
-      t = { "<cmd>Lspsaga term_toggle htop<cr>", "Htop" },
-      p = { "<cmd>Lspsaga term_toggle python3<cr>", "Python" },
-      f = { "<cmd>Lspsaga term_toggle<cr>", "Float" },
+      t = { "<cmd>lua require('util.terminal')({ cmd = 'htop' })<cr>", "Htop" },
+      p = { "<cmd>lua require('util.terminal')({ cmd = 'python3' })<cr>", "Python" },
+      f = { "<cmd>lua require('util.terminal')()<cr>", "Float" },
     },
   }
   local opts = {
