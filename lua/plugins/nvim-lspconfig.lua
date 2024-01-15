@@ -177,19 +177,22 @@ local config = function()
 
   local luacheck = require("efmls-configs.linters.luacheck")
   local stylua = require("efmls-configs.formatters.stylua")
-  local flake8 = require("efmls-configs.linters.flake8")
-  local black = require("efmls-configs.formatters.black")
+  local ruff_linter = require("efmls-configs.linters.ruff")
+  local ruff_format = require("efmls-configs.formatters.ruff")
   local eslint = require("efmls-configs.linters.eslint")
   local prettier_d = require("efmls-configs.formatters.prettier_d")
   local fixjson = require("efmls-configs.formatters.fixjson")
   local shellcheck = require("efmls-configs.linters.shellcheck")
   local shfmt = require("efmls-configs.formatters.shfmt")
   local hadolint = require("efmls-configs.linters.hadolint")
-  local cpplint = require("efmls-configs.linters.cpplint")
-  local clangformat = require("efmls-configs.formatters.clang_format")
+  -- local cpplint = require("efmls-configs.linters.cpplint")
+  -- local gcc = require("efmls-configs.linters.gcc")
+  -- local clangformat = require("efmls-configs.formatters.clang_format")
 
   -- configure efm server
   lspconfig.efm.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
     filetypes = {
       "lua",
       "python",
@@ -206,8 +209,8 @@ local config = function()
       "vue",
       "markdown",
       "docker",
-      "c",
-      "cpp",
+      -- "c",
+      -- "cpp",
     },
     init_options = {
       documentFormatting = true,
@@ -220,7 +223,7 @@ local config = function()
     settings = {
       languages = {
         lua = { luacheck, stylua },
-        python = { flake8, black },
+        python = { ruff_linter, ruff_format },
         typescript = { eslint, prettier_d },
         json = { eslint, fixjson },
         jsonc = { eslint, fixjson },
@@ -234,8 +237,8 @@ local config = function()
         vue = { eslint, prettier_d },
         markdown = { prettier_d },
         docker = { hadolint, prettier_d },
-        c = { clangformat, cpplint },
-        cpp = { clangformat, cpplint },
+        -- c = { clangformat, gcc },
+        -- cpp = { clangformat, gcc },
       },
     },
   })
