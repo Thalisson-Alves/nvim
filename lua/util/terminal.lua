@@ -9,7 +9,7 @@ local terminals = {}
 function M.open(opts)
   opts = vim.tbl_deep_extend("force", {
     cmd = vim.o.shell,
-    cwd = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p:h"),
+    cwd = vim.fn.getcwd(),
     esc_esc = true,
     ctrl_hjkl = true,
     ft = "terminal",
