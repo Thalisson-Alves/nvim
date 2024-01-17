@@ -8,4 +8,9 @@ vim.cmd([[
     autocmd!
     autocmd BufWritePre * :%s/\s\+$//e
   augroup end
+
+  augroup _fix_docker_compose
+    autocmd!
+    autocmd BufRead docker-compose.yml set filetype=yaml.docker-compose
+  augroup end
 ]])
