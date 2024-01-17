@@ -12,7 +12,6 @@ local on_attach = function(_, bufnr)
   map("v", "<leader>lf",
     "<cmd>lua vim.lsp.buf.format{range={['start']=vim.api.nvim_buf_get_mark(0,'<'),['end']=vim.api.nvim_buf_get_mark(0,'>')}}<cr>",
     { desc = "Format" })
-  map("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Lsp info" })
   map("n", "<leader>la", "<cmd>Lspsaga code_action<cr>", { desc = "Code action" })
   map("n", "<leader>lj", "<cmd>Lspsaga diagnostic_jump_next<cr>", { desc = "Next diagnostic" })
   map("n", "<leader>lk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", { desc = "Prev diagnostic" })
@@ -77,6 +76,10 @@ local config = function()
         },
       },
     },
+  })
+  lspconfig.ruff_lsp.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
   })
 
   -- rust
@@ -164,6 +167,10 @@ local config = function()
     capabilities = capabilities,
     on_attach = on_attach,
   })
+  lspconfig.docker_compose_language_service.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
 
   -- C/C++
   lspconfig.clangd.setup({
@@ -174,74 +181,6 @@ local config = function()
       "--offset-encoding=utf-16",
     },
   })
-
-  local luacheck = require("efmls-configs.linters.luacheck")
-  local stylua = require("efmls-configs.formatters.stylua")
-  local ruff_linter = require("efmls-configs.linters.ruff")
-  local ruff_format = require("efmls-configs.formatters.ruff")
-  local eslint = require("efmls-configs.linters.eslint")
-  local prettier_d = require("efmls-configs.formatters.prettier_d")
-  local fixjson = require("efmls-configs.formatters.fixjson")
-  local shellcheck = require("efmls-configs.linters.shellcheck")
-  local shfmt = require("efmls-configs.formatters.shfmt")
-  local hadolint = require("efmls-configs.linters.hadolint")
-  -- local cpplint = require("efmls-configs.linters.cpplint")
-  -- local gcc = require("efmls-configs.linters.gcc")
-  -- local clangformat = require("efmls-configs.formatters.clang_format")
-
-  -- configure efm server
-  lspconfig.efm.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    filetypes = {
-      "lua",
-      "python",
-      "json",
-      "jsonc",
-      "sh",
-      "html",
-      "css",
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "svelte",
-      "vue",
-      "markdown",
-      "docker",
-      -- "c",
-      -- "cpp",
-    },
-    init_options = {
-      documentFormatting = true,
-      documentRangeFormatting = true,
-      hover = true,
-      documentSymbol = true,
-      codeAction = true,
-      completion = true,
-    },
-    settings = {
-      languages = {
-        lua = { luacheck, stylua },
-        python = { ruff_linter, ruff_format },
-        typescript = { eslint, prettier_d },
-        json = { eslint, fixjson },
-        jsonc = { eslint, fixjson },
-        sh = { shellcheck, shfmt },
-        html = { prettier_d },
-        css = { prettier_d },
-        javascript = { eslint, prettier_d },
-        javascriptreact = { eslint, prettier_d },
-        typescriptreact = { eslint, prettier_d },
-        svelte = { eslint, prettier_d },
-        vue = { eslint, prettier_d },
-        markdown = { prettier_d },
-        docker = { hadolint, prettier_d },
-        -- c = { clangformat, gcc },
-        -- cpp = { clangformat, gcc },
-      },
-    },
-  })
 end
 
 return {
@@ -250,7 +189,6 @@ return {
   lazy = false,
   dependencies = {
     "williamboman/mason.nvim",
-    "creativenull/efmls-configs-nvim",
     "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-nvim-lsp",

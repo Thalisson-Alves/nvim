@@ -1,14 +1,15 @@
 local opts = {
 	ensure_installed = {
-		"efm",
     "rust_analyzer",
 		"clangd",
 		"bashls",
 		"pyright",
+    "ruff_lsp",
 		"lua_ls",
 		"jsonls",
-		-- "tsserver",
-		-- "tailwindcss",
+    "dockerls",
+    "docker_compose_language_service",
+    "emmet_ls",
 	},
 
 	automatic_installation = true,
