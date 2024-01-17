@@ -6,5 +6,7 @@ return {
     "nvim-telescope/telescope.nvim", -- optional
   },
   config = true,
-  lazy = false,
+  keys = {
+    { "<leader>gg", "<cmd>Neogit<CR>", desc = "Neogit" },
+  }
 }

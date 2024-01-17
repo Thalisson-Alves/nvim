@@ -8,7 +8,10 @@ local config = function()
     h = { "<cmd>nohlsearch<CR>", "No Highlight" },
     L = { "<cmd> Lazy<cr>", "Lazy" },
     g = { name = "+Git" },
-    l = { name = "+LSP" },
+    l = {
+      name = "+LSP",
+      i = { "<cmd>LspInfo<cr>", "Lsp info" },
+    },
     s = { name = "+Search" },
     t = {
       name = "+Terminal",
