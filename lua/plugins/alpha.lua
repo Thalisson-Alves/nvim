@@ -36,7 +36,7 @@ return {
       dashboard.button("e", "  New file", "<cmd>ene <BAR> startinsert<CR>"),
       dashboard.button("r", "  Recently used files", "<cmd>Telescope oldfiles<CR>"),
       dashboard.button("t", "  Find text", "<cmd>Telescope live_grep<CR>"),
-      dashboard.button("c", "  Configuration", "<cmd>lua _GOTO_FILE(os.getenv('MYVIMRC'))<CR>"),
+      dashboard.button("c", "  Configuration", "<cmd>lua GOTO_FILE(os.getenv('MYVIMRC'))<CR>"),
       dashboard.button("q", "  Quit Neovim", "<cmd>qa<CR>"),
     }
 
