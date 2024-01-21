@@ -2,7 +2,6 @@ local config = function()
   local cmp = require("cmp")
   local luasnip = require("luasnip")
   local lspkind = require("lspkind")
-  local ts_utils = require("nvim-treesitter.ts_utils")
 
   require("luasnip/loaders/from_vscode").lazy_load({ include = { "c", "cpp", "python" } })
 
@@ -17,6 +16,9 @@ local config = function()
       expand = function(args)
         luasnip.lsp_expand(args.body)
       end,
+    },
+    completion = {
+      completeopt = "menu,menuone,noinsert",
     },
     mapping = cmp.mapping.preset.insert({
       ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
@@ -56,5 +58,6 @@ return {
       -- install jsregexp (optional!).
       build = "make install_jsregexp",
     },
+    "saadparwaiz1/cmp_luasnip",
   },
 }
