@@ -41,7 +41,6 @@ return {
       map("n", "l", api.node.open.edit, "Edit")
       map("n", "h", api.node.navigate.parent_close, "Close Directory")
       map("n", "?", api.tree.toggle_help, "Help")
-      -- TODO: configure toggle bookmark visual mode
     end,
   },
   init = function()
