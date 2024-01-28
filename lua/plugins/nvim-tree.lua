@@ -17,7 +17,8 @@ return {
       side = "left",
     },
     git = {
-      enable = true,
+      enable = false,
+      ignore = true,
     },
     on_attach = function(bufnr)
       local api = require("nvim-tree.api")
