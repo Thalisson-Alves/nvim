@@ -4,7 +4,7 @@ local config = function()
   local mappings = {
     w = { "<cmd>w!<cr>", "Save" },
     q = { "<cmd>q!<cr>", "Quit" },
-    c = { "<cmd>bdelete!<cr>", "Close buffer" },
+    c = { "<cmd>bp<bar>sp<bar>bn<bar>bd!<cr>", "Close buffer" },
     h = { "<cmd>nohlsearch<CR>", "No Highlight" },
     L = { "<cmd> Lazy<cr>", "Lazy" },
     g = { name = "+Git" },
@@ -19,6 +19,7 @@ local config = function()
       p = { "<cmd>lua require('util.terminal')({ cmd = 'python3' })<cr>", "Python" },
       f = { "<cmd>lua require('util.terminal')()<cr>", "Float" },
     },
+    v = { name = "+Virtual env" },
   }
   local opts = {
     mode = "n",     -- NORMAL mode
