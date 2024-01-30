@@ -13,13 +13,8 @@ local config = function()
       i = { "<cmd>LspInfo<cr>", "Lsp info" },
     },
     s = { name = "+Search" },
-    t = {
-      name = "+Terminal",
-      t = { "<cmd>lua require('util.terminal')({ cmd = 'htop' })<cr>", "Htop" },
-      p = { "<cmd>lua require('util.terminal')({ cmd = 'python3' })<cr>", "Python" },
-      f = { "<cmd>lua require('util.terminal')()<cr>", "Float" },
-    },
-    v = { name = "+Virtual env" },
+    t = { name = "+Terminal" },
+    v = { name = "+PyVenv" },
   }
   local opts = {
     mode = "n",     -- NORMAL mode
