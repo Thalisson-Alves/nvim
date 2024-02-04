@@ -21,6 +21,9 @@ return {
         background = "Normal",
       },
     },
+    on_open = function()
+      vim.cmd("startinsert!")
+    end,
   },
   config = function(_, opts)
     require("toggleterm").setup(opts)
@@ -39,6 +42,6 @@ return {
     { "<leader>tf", "<cmd>ToggleTerm direction=float<cr>",            desc = "Float" },
     { "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>",       desc = "Horizontal" },
     { "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", desc = "Vertical" },
-    { "<leader>tp", "<cmd>lua _PYTHON_TOGGLE<cr>",                    desc = "Python" },
+    { "<leader>tp", "<cmd>lua _PYTHON_TOGGLE()<cr>",                  desc = "Python" },
   }
 }
