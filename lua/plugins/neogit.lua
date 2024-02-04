@@ -7,7 +7,7 @@ return {
   },
   config = true,
   keys = {
-    { "<leader>gg", "<cmd>Neogit cwd=%:p:h<CR>", desc = "Neogit current file" },
-    { "<leader>gG", "<cmd>Neogit", desc = "Neogit cwd" },
+    { "<leader>gg", "<cmd>Neogit cwd=%:p:h<cr>", desc = "Neogit current file" },
+    { "<leader>gG", "<cmd>Neogit<cr>",           desc = "Neogit cwd" },
   }
 }
