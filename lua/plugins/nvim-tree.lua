@@ -16,6 +16,14 @@ return {
       width = 30,
       side = "left",
     },
+    renderer = {
+      root_folder_label = function(path)
+        return vim.fn.substitute(
+          vim.fn.fnamemodify(path, ":~"),
+          [[.*/\(\([^/]\+/\)\{1\}.*\)]], [[\1]], ""
+        )
+      end
+    },
     git = {
       enable = false,
       ignore = true,
