@@ -13,7 +13,11 @@ end
 ---@field include_filetypes? string[]
 ---@field exclude_pattern? string
 
----@alias CustomSnips table<filetype, string[]>
+---@class Snip
+---@field path string
+---@field name string
+
+---@alias CustomSnips table<filetype, Snip[]>
 
 ---Gets all snippet files
 ---@param opts GetScnipOptions
@@ -66,7 +70,11 @@ function M.get_snip_files(opts)
         log_error("Could not determine filetype of " .. path)
       elseif should_include_filetype(filetype) then
         snips[filetype] = snips[filetype] or {}
-        table.insert(snips[filetype], path)
+        table.insert(snips[filetype], {
+          path = path,
+          name = vim.fn.fnamemodify(path, ":t:r")
+          -- name = vim.fn.fnamemodify(path, ":p:r"):sub(vim.fn.fnamemodify(opts.base_dir, ":p"):len() + 1):gsub("/", "_"),
+        })
       end
     else
       for _, entry in pairs(vim.fn.readdir(path, must_exclude_dir)) do
@@ -97,9 +105,8 @@ function M.add_to_luasnip(snips)
   local ls = require("luasnip")
   for filetype, filepaths in pairs(snips) do
     local ext_snips = {}
-    for _, path in ipairs(filepaths) do
-      local filename = vim.fn.fnamemodify(path, ":t:r")
-      table.insert(ext_snips, ls.snippet(filename, ls.text_node(read_file_lines(path))))
+    for _, snip in ipairs(filepaths) do
+      table.insert(ext_snips, ls.snippet(snip.name, ls.text_node(read_file_lines(snip.path))))
     end
 
     ls.add_snippets(nil, { [filetype] = ext_snips })

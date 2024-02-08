@@ -3,6 +3,7 @@ local config = function()
 
   local mappings = {
     w = { "<cmd>w!<cr>", "Save" },
+    W = { "<cmd>noa w!<cr>", "Save no autocommands" },
     q = { "<cmd>q!<cr>", "Quit" },
     c = { "<cmd>bp<bar>sp<bar>bn<bar>bd!<cr>", "Close buffer" },
     h = { "<cmd>nohlsearch<CR>", "No Highlight" },
