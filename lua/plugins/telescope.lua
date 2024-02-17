@@ -35,7 +35,6 @@ return {
   dependencies = { "nvim-lua/plenary.nvim" },
   config = config,
   keys = {
-    { "<leader>b", "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>", desc = "Find buffers" },
     { "<leader>f", "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>", desc = "Find files" },
     { "<leader>F", "<cmd>Telescope live_grep<cr>", desc = "Find text" },
     { "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file" },
