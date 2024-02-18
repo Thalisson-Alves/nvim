@@ -5,7 +5,7 @@ local config = function()
     w = { "<cmd>w!<cr>", "Save" },
     W = { "<cmd>noa w!<cr>", "Save no autocommands" },
     q = { "<cmd>q!<cr>", "Quit" },
-    c = { "<cmd>bp<bar>sp<bar>bn<bar>bd!<cr>", "Close buffer" },
+    c = { "<cmd>Bdelete<cr>", "Close buffer" },
     h = { "<cmd>nohlsearch<CR>", "No Highlight" },
     L = { "<cmd> Lazy<cr>", "Lazy" },
     g = { name = "+Git" },
