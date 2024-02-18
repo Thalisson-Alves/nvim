@@ -1,5 +1,6 @@
 return {
-  "Thalisson-Alves/blui-nvim",
+  -- "Thalisson-Alves/blui-nvim",
+  dir = "~/prog/nvim-plugins/blui-nvim",
   dependencies = {
     "akinsho/bufferline.nvim",
     "nvim-lua/plenary.nvim",
