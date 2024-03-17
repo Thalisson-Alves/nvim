@@ -166,6 +166,12 @@ local config = function()
       "--offset-encoding=utf-16",
     },
   })
+
+  -- C#
+  lspconfig.csharp_ls.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
 end
 
 return {
