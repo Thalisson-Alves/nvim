@@ -5,7 +5,8 @@ return {
     open_mapping = [[<c-\>]],
     hide_numbers = true,
     shade_filetypes = {},
-    shade_terminals = false,
+    shade_terminals = true,
+    shading_factor = 2,
     start_in_insert = true,
     insert_mappings = true,
     persist_size = true,
@@ -14,7 +15,7 @@ return {
     shell = vim.o.shell,
     float_opts = {
       border = "curved",
-      winblend = 30,
+      -- winblend = 30,
       highlights = {
         border = "Normal",
         background = "Normal",
