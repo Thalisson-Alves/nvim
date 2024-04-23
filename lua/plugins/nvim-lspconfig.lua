@@ -129,22 +129,10 @@ local config = function()
     filetypes = { "sh", "aliasrc" },
   })
 
-  -- typescriptreact, javascriptreact, css, sass, scss, less, svelte, vue
-  lspconfig.emmet_ls.setup({
+  -- HTML
+  lspconfig.html.setup({
     capabilities = capabilities,
     on_attach = on_attach,
-    filetypes = {
-      "typescriptreact",
-      "javascriptreact",
-      "javascript",
-      "css",
-      "sass",
-      "scss",
-      "less",
-      "svelte",
-      "vue",
-      "html",
-    },
   })
 
   -- docker
