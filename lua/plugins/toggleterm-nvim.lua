@@ -1,5 +1,6 @@
 return {
   "akinsho/toggleterm.nvim",
+  commit = "16a2873e674b17b67a399db657c359e0a0c906ff",
   opts = {
     size = 20,
     open_mapping = [[<c-\>]],

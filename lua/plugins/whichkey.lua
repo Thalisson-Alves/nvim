@@ -1,38 +1,20 @@
-local config = function()
-  local wk = require("which-key")
-
-  local mappings = {
-    w = { "<cmd>w!<cr>", "Save" },
-    W = { "<cmd>noa w!<cr>", "Save no autocommands" },
-    q = { "<cmd>q!<cr>", "Quit" },
-    c = { "<cmd>Bdelete<cr>", "Close buffer" },
-    h = { "<cmd>nohlsearch<CR>", "No Highlight" },
-    L = { "<cmd> Lazy<cr>", "Lazy" },
-    g = { name = "+Git" },
-    d = { name = "+DAP" },
-    l = {
-      name = "+LSP",
-      i = { "<cmd>LspInfo<cr>", "Lsp info" },
-    },
-    s = { name = "+Search" },
-    t = { name = "+Terminal" },
-    v = { name = "+PyVenv" },
-  }
-  local opts = {
-    mode = "n",     -- NORMAL mode
-    prefix = "<leader>",
-    buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true,  -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = true,  -- use `nowait` when creating keymaps
-    expr = false,   -- use `expr` when creating keymaps
-  }
-  wk.register(mappings, opts)
-end
-
 return {
   "folke/which-key.nvim",
   lazy = false,
   opts = {},
-  config = config,
+  keys = {
+    { "<leader>L",  "<cmd> Lazy<cr>",      desc = "Lazy",                 expr = false,  nowait = true, remap = false },
+    { "<leader>W",  "<cmd>noa w!<cr>",     desc = "Save no autocommands", expr = false,  nowait = true, remap = false },
+    { "<leader>c",  "<cmd>Bdelete<cr>",    desc = "Close buffer",         expr = false,  nowait = true, remap = false },
+    { "<leader>d",  expr = false,          group = "DAP",                 nowait = true, remap = false },
+    { "<leader>g",  expr = false,          group = "Git",                 nowait = true, remap = false },
+    { "<leader>h",  "<cmd>nohlsearch<CR>", desc = "No Highlight",         expr = false,  nowait = true, remap = false },
+    { "<leader>l",  expr = false,          group = "LSP",                 nowait = true, remap = false },
+    { "<leader>li", "<cmd>LspInfo<cr>",    desc = "Lsp info",             expr = false,  nowait = true, remap = false },
+    { "<leader>q",  "<cmd>q!<cr>",         desc = "Quit",                 expr = false,  nowait = true, remap = false },
+    { "<leader>s",  expr = false,          group = "Search",              nowait = true, remap = false },
+    { "<leader>t",  expr = false,          group = "Terminal",            nowait = true, remap = false },
+    { "<leader>v",  expr = false,          group = "PyVenv",              nowait = true, remap = false },
+    { "<leader>w",  "<cmd>w!<cr>",         desc = "Save",                 expr = false,  nowait = true, remap = false },
+  }
 }

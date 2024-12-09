@@ -62,7 +62,7 @@ local config = function()
       },
     },
   })
-  lspconfig.ruff_lsp.setup({
+  lspconfig.ruff.setup({
     capabilities = capabilities,
     on_attach = on_attach,
   })
@@ -113,7 +113,7 @@ local config = function()
   })
 
   -- typescript
-  lspconfig.tsserver.setup({
+  lspconfig.ts_ls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
     filetypes = {
