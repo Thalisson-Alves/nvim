@@ -9,7 +9,9 @@ local config = function()
 
   -- configure custom snippets
   local custom_snips_opt = { base_dir = "~/prog/comp/Competitive-Programming/code", include_filetypes = { "cpp", "python" } }
-  require("util.custom-snips").get_and_add_snips(custom_snips_opt)
+  if vim.fn.isdirectory(custom_snips_opt.base_dir) == 1 then
+    require("util.custom-snips").get_and_add_snips(custom_snips_opt)
+  end
 
   cmp.setup({
     snippet = {
