@@ -199,7 +199,7 @@ local config = function()
       '-javaagent:' .. os.getenv('HOME') .. '/.local/share/nvim/mason/packages/jdtls/lombok.jar',
       '-jar',
       vim.fn.glob(os.getenv('HOME') ..
-      '/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar'),
+        '/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar'),
       '-configuration',
       os.getenv('HOME') .. '/.local/share/nvim/mason/packages/jdtls/config_linux',
       '-data',

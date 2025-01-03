@@ -7,12 +7,6 @@ local config = function()
 
   vim.opt.completeopt = "menu,menuone,noselect"
 
-  -- configure custom snippets
-  local custom_snips_opt = { base_dir = "~/prog/comp/Competitive-Programming/code", include_filetypes = { "cpp", "python" } }
-  if vim.fn.isdirectory(vim.fn.expand(custom_snips_opt.base_dir)) == 1 then
-    require("util.custom-snips").get_and_add_snips(custom_snips_opt)
-  end
-
   cmp.setup({
     snippet = {
       expand = function(args)
