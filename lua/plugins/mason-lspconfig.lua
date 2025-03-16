@@ -4,7 +4,7 @@ local opts = {
 		"clangd",
 		"bashls",
 		"pyright",
-    "ruff_lsp",
+    "ruff",
 		"lua_ls",
 		"jsonls",
     "dockerls",

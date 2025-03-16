@@ -1,24 +1,3 @@
-local on_attach = function(_, bufnr)
-  local opts = { noremap = true, silent = true }
-  local function map(mode, lhs, rhs, opt)
-    vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, vim.tbl_deep_extend("keep", opt, opts))
-  end
-  map("n", "gd", "<cmd>Lspsaga goto_definition<CR>", { desc = "Go to definition" })
-  map("n", "gp", "<cmd>Lspsaga peek_definition<CR>", { desc = "Peek definition" })
-  map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { desc = "Hover doc" })
-  map("n", "gr", "<cmd>Lspsaga finder<CR>", { desc = "References" })
-  map("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", { desc = "Line diagnostics" })
-  map("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{}<cr>", { desc = "Format" })
-  map("v", "<leader>lf",
-    "<cmd>lua vim.lsp.buf.format{range={['start']=vim.api.nvim_buf_get_mark(0,'<'),['end']=vim.api.nvim_buf_get_mark(0,'>')}}<cr>",
-    { desc = "Format" })
-  map("n", "<leader>la", "<cmd>Lspsaga code_action<cr>", { desc = "Code action" })
-  map("n", "<leader>lj", "<cmd>Lspsaga diagnostic_jump_next<cr>", { desc = "Next diagnostic" })
-  map("n", "<leader>lk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", { desc = "Prev diagnostic" })
-  map("n", "<leader>lr", "<cmd>Lspsaga rename<cr>", { desc = "Rename" })
-  map("n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { desc = "Signature help" })
-  map("n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", { desc = "Quickfix" })
-end
 local diagnostic_signs = { Error = "", Warn = "", Hint = "", Info = "" }
 
 local config = function()
@@ -26,6 +5,7 @@ local config = function()
   local cmp_nvim_lsp = require("cmp_nvim_lsp")
   local lspconfig = require("lspconfig")
   local capabilities = cmp_nvim_lsp.default_capabilities()
+  local on_attach = require("config.lsp").on_attach
 
   for type, icon in pairs(diagnostic_signs) do
     local hl = "DiagnosticSign" .. type
@@ -179,62 +159,68 @@ local config = function()
     },
   })
 
+  -- Latex
+  -- lspconfig.texlab.setup({
+  --   capabilities = capabilities,
+  --   on_attach = on_attach,
+  -- })
+
   -- Java
-  lspconfig.jdtls.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    cmd = {
-      'java',
-      '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-      '-Dosgi.bundles.defaultStartLevel=4',
-      '-Declipse.product=org.eclipse.jdt.ls.core.product',
-      '-Dlog.protocol=true',
-      '-Dlog.level=ALL',
-      '-Xmx1g',
-      '--add-modules=ALL-SYSTEM',
-      '--add-opens',
-      'java.base/java.util=ALL-UNNAMED',
-      '--add-opens',
-      'java.base/java.lang=ALL-UNNAMED',
-      '-javaagent:' .. os.getenv('HOME') .. '/.local/share/nvim/mason/packages/jdtls/lombok.jar',
-      '-jar',
-      vim.fn.glob(os.getenv('HOME') ..
-        '/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar'),
-      '-configuration',
-      os.getenv('HOME') .. '/.local/share/nvim/mason/packages/jdtls/config_linux',
-      '-data',
-      os.getenv('HOME') .. '/.local/share/nvim/mason/packages/jdtls/workspace',
-    },
-    root_dir = lspconfig.util.root_pattern("pom.xml", "gradle.build", ".git", "mvnw", "gradlew"),
-    settings = {
-      java = {
-        signatureHelp = { enabled = true },
-        maven = {
-          downloadSources = true,
-        },
-        referencesCodeLens = {
-          enabled = true,
-        },
-        references = {
-          includeDecompiledSources = true,
-        },
-        inlayHints = {
-          parameterNames = {
-            enabled = 'all', -- literals, all, none
-          },
-        },
-        format = {
-          enabled = false,
-        },
-      },
-    },
-    init_options = {
-      -- TODO: configure vscode-java-test
-      -- bundles = {
-      --   vim.fn.glob(""),
-      -- },
-    },
-  })
+  -- lspconfig.jdtls.setup({
+  --   capabilities = capabilities,
+  --   on_attach = on_attach,
+  --   cmd = {
+  --     'java',
+  --     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+  --     '-Dosgi.bundles.defaultStartLevel=4',
+  --     '-Declipse.product=org.eclipse.jdt.ls.core.product',
+  --     '-Dlog.protocol=true',
+  --     '-Dlog.level=ALL',
+  --     '-Xmx1g',
+  --     '--add-modules=ALL-SYSTEM',
+  --     '--add-opens',
+  --     'java.base/java.util=ALL-UNNAMED',
+  --     '--add-opens',
+  --     'java.base/java.lang=ALL-UNNAMED',
+  --     '-javaagent:' .. os.getenv('HOME') .. '/.local/share/nvim/mason/packages/jdtls/lombok.jar',
+  --     '-jar',
+  --     vim.fn.glob(os.getenv('HOME') ..
+  --       '/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar'),
+  --     '-configuration',
+  --     os.getenv('HOME') .. '/.local/share/nvim/mason/packages/jdtls/config_linux',
+  --     '-data',
+  --     os.getenv('HOME') .. '/.local/share/nvim/mason/packages/jdtls/workspace',
+  --   },
+  --   root_dir = lspconfig.util.root_pattern("pom.xml", "gradle.build", ".git", "mvnw", "gradlew"),
+  --   settings = {
+  --     java = {
+  --       signatureHelp = { enabled = true },
+  --       maven = {
+  --         downloadSources = true,
+  --       },
+  --       referencesCodeLens = {
+  --         enabled = true,
+  --       },
+  --       references = {
+  --         includeDecompiledSources = true,
+  --       },
+  --       inlayHints = {
+  --         parameterNames = {
+  --           enabled = 'all', -- literals, all, none
+  --         },
+  --       },
+  --       format = {
+  --         enabled = false,
+  --       },
+  --     },
+  --   },
+  --   init_options = {
+  --     -- TODO: configure vscode-java-test
+  --     -- bundles = {
+  --     --   vim.fn.glob(""),
+  --     -- },
+  --   },
+  -- })
 end
 
 return {
@@ -246,6 +232,5 @@ return {
     "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-nvim-lsp",
-    { "folke/neodev.nvim", opts = {} },
   },
 }
