@@ -8,7 +8,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
 
     -- language specific
-    { "mrcjkb/rustaceanvim", version = "^5" }
+    { "mrcjkb/rustaceanvim" }
   },
   config = function()
     require("neotest").setup({
@@ -18,10 +18,10 @@ return {
     })
   end,
   keys = {
-    { "<leader>dtt", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", desc = "Test file" },
-    { "<leader>dtl", "<cmd>lua require('neotest').run.run_last()<CR>",              desc = "Test last" },
-    { "<leader>dtf", "<cmd>lua require('neotest').run.run()<CR>",                   desc = "Test function" },
-    { "<leader>dts", "<cmd>lua require('neotest').run.stop()<CR>",                  desc = "Test stop" },
-    { "<leader>dto", "<cmd>lua require('neotest').output.open({ enter = true })<CR>", desc = "Test open output" },
+    { "<leader>Tt", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", desc = "Test file" },
+    { "<leader>Tl", "<cmd>lua require('neotest').run.run_last()<CR>",              desc = "Test last" },
+    { "<leader>Tf", "<cmd>lua require('neotest').run.run()<CR>",                   desc = "Test function" },
+    { "<leader>Ts", "<cmd>lua require('neotest').run.stop()<CR>",                  desc = "Test stop" },
+    { "<leader>To", "<cmd>lua require('neotest').output.open({ enter = true })<CR>", desc = "Test open output" },
   },
 }

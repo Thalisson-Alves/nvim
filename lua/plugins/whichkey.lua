@@ -1,6 +1,9 @@
 return {
   "folke/which-key.nvim",
   lazy = false,
+  dependencies = {
+    "echasnovski/mini.icons",
+  },
   opts = {},
   keys = {
     { "<leader>L",  "<cmd> Lazy<cr>",      desc = "Lazy",                 expr = false,  nowait = true, remap = false },

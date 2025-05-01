@@ -26,13 +26,17 @@ local config = function()
       },
     },
   })
+  telescope.load_extension("ui-select")
 end
 
 return {
   "nvim-telescope/telescope.nvim",
   tag = "0.1.8",
   lazy = false,
-  dependencies = { "nvim-lua/plenary.nvim" },
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope-ui-select.nvim",
+  },
   config = config,
   keys = {
     { "<leader>B", "<cmd>Telescope buffers<cr>", desc = "Search buffers" },

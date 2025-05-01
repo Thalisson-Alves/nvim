@@ -47,59 +47,21 @@ local config = function()
     on_attach = on_attach,
   })
 
-  -- rust
-  lspconfig.rust_analyzer.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    checkOnSave = {
-      command = "clippy",
-    },
-    cargo = {
-      loadOutDirsFromCheck = true,
-    },
-    procMacro = {
-      enable = true,
-    },
-    assist = {
-      importMergeBehavior = "last",
-      importPrefix = "by_self",
-    },
-    -- diagnostics = {
-    -- 	disabled = { "unresolved-proc-macro" },
-    -- },
-    inlayHints = {
-      chainingHints = true,
-      typeHints = true,
-      parameterHints = true,
-      maxLength = 120,
-    },
-    hoverActions = {
-      linksInHover = true,
-    },
-    lens = {
-      methodReferences = true,
-      references = true,
-      implementations = true,
-      run = true,
-      debug = true,
-    },
-    cargoWatch = {
-      enable = true,
-      args = { "--all-targets" },
-    },
-    experimental = {
-      procAttrMacros = true,
-    },
-  })
-
   -- typescript
   lspconfig.ts_ls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = {
-      "typescript",
+    commands = {
+      TypeScriptOrganizeImports = {
+        function()
+          vim.lsp.buf.execute_command({
+            command = "_typescript.organizeImports",
+            arguments = { vim.api.nvim_buf_get_name(0) },
+          })
+        end,
+        description = "Organize Imports",
+      },
     },
-    root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git"),
   })
 
   -- bash
@@ -132,6 +94,11 @@ local config = function()
     cmd = {
       "clangd",
       "--offset-encoding=utf-16",
+    },
+    init_options = {
+      fallbackFlags = {
+        "-I", vim.fn.getcwd() .. "/src",
+      },
     },
   })
 
