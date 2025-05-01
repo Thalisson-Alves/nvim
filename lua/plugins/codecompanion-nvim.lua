@@ -24,6 +24,8 @@ return {
     })
   end,
   keys = {
-    { "<leader>C", "<cmd>CodeCompanionChat Toggle<CR>", desc = "Toggle CodeCompanion" },
+    { "<leader>CC", "<cmd>CodeCompanionChat Toggle<CR>", desc = "Toggle CodeCompanion Chat" },
+    { "<leader>Cn", "<cmd>CodeCompanionChat<CR>", desc = "New CodeCompanion Chat" },
+    { "<leader>Ca", "<cmd>CodeCompanionActions<CR>", desc = "CodeCompanion Actions" },
   },
 }
