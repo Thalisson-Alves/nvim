@@ -4,6 +4,7 @@ return {
   dependencies = {
     { "nvim-lua/plenary.nvim", branch = "master" },
     "nvim-treesitter/nvim-treesitter",
+    "hakonharnes/img-clip.nvim",
   },
   config = function()
     local adapter = require("plugins.codecompanion.adapter")

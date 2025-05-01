@@ -39,7 +39,7 @@ function M.slash_paste_image(chat)
   local base64res = clipboard.get_base64_encoded_image()
   local url = prefix .. base64res
   local hash = vim.fn.sha256(url)
-  local id = "<pasted_image>" .. hash:sub(1, 16) .. "</pasted_image>"
+  local id = "<pasted-image>" .. hash:sub(1, 16) .. "</pasted-image>"
   M.add_image(chat, id, url)
 end
 
@@ -47,7 +47,7 @@ end
 function M.slash_add_image_url(chat)
   local function callback(input)
     if input then
-      local id = "<image_url>" .. input .. "</image_url>"
+      local id = "<image-url>" .. input .. "</image-url>"
       M.add_image(chat, id, input)
     end
   end
@@ -71,15 +71,15 @@ function M.get_copilot_adapter()
   local copilot = require("codecompanion.adapters.copilot")
   return require("codecompanion.adapters").extend("copilot", {
     handlers = {
-      --   form_parameters = function(self, params, messages)
-      --     local result = copilot.handlers.form_parameters(self, params, messages)
-      --     return result
-      --   end,
+      form_parameters = function(self, params, messages)
+        local result = copilot.handlers.form_parameters(self, params, messages)
+        return result
+      end,
       form_messages = function(self, messages)
         local result = copilot.handlers.form_messages(self, messages)
         vim.tbl_map(function(v)
           local ok, json_res = pcall(function()
-            return vim.fn.json_decode(v)
+            return vim.json.decode(v.content)
           end, "not a json")
           if ok then
             v.content = json_res
@@ -108,7 +108,7 @@ function M.get_copilot_adapter()
       -- gemini-2.0-flash-001
       -- gemini-2.5-pro
       model = {
-        default = "claude-3.7-sonnet",
+        default = "gemini-2.5-pro",
       },
     },
   })
