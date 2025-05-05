@@ -7,6 +7,7 @@ return {
     "hakonharnes/img-clip.nvim",
   },
   config = function()
+    require("plugins.codecompanion.spinner"):init()
     local adapter = require("plugins.codecompanion.adapter")
     require("codecompanion").setup({
       strategies = {
@@ -20,12 +21,18 @@ return {
       },
       adapters = {
         copilot_compatible = adapter.get_copilot_adapter,
-      }
+      },
+      keymaps = {
+        send = {
+          callback = function(chat)
+            vim.cmd("stopinsert")
+            chat:send_message()
+          end,
+        },
+      },
     })
   end,
   keys = {
-    { "<leader>CC", "<cmd>CodeCompanionChat Toggle<CR>", desc = "Toggle CodeCompanion Chat" },
-    { "<leader>Cn", "<cmd>CodeCompanionChat<CR>", desc = "New CodeCompanion Chat" },
-    { "<leader>Ca", "<cmd>CodeCompanionActions<CR>", desc = "CodeCompanion Actions" },
+    { "<leader>C", "<cmd>CodeCompanionChat Toggle<CR>", desc = "Toggle CodeCompanion Chat" },
   },
 }

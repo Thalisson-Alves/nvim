@@ -1,6 +1,31 @@
 local M = {}
 
+-- TODO: create a slash_model command to set the model
+local available_models = {
+  "gpt-4o",
+  "gpt-4.1",
+  "o1",
+  "o3-mini",
+  "o4-mini",
+  "claude-3.5-sonnet",
+  "claude-3.7-sonnet",
+  "claude-3.7-sonnet-thought",
+  "gemini-2.0-flash-001",
+  "gemini-2.5-pro",
+}
 
+local default_model = "gemini-2.5-pro"
+
+---@param chat CodeCompanion.Chat
+---@param model string
+function M.update_model(chat, model)
+  if chat.adapter and chat.adapter.schema then
+    chat.adapter.opts.model = model
+    vim.notify("CodeCompanion model set to: " .. model, vim.log.levels.INFO)
+  else
+    vim.notify("Could not set model for the current chat adapter.", vim.log.levels.ERROR)
+  end
+end
 
 ---@param chat CodeCompanion.Chat
 ---@param id string
@@ -58,11 +83,11 @@ function M.get_slash_commands()
   return {
     ["image_url"] = {
       callback = M.slash_add_image_url,
-      description = "add image via url",
+      description = "Add image via url",
     },
     ["image_paste"] = {
       callback = M.slash_paste_image,
-      description = "add image from clipboard",
+      description = "Add image from clipboard",
     },
   }
 end
@@ -96,19 +121,8 @@ function M.get_copilot_adapter()
       end,
     },
     schema = {
-      -- === models ===
-      -- gpt-4o
-      -- gpt-4.1
-      -- o1
-      -- o3-mini
-      -- o4-mini
-      -- claude-3.5-sonnet
-      -- claude-3.7-sonnet
-      -- claude-3.7-sonnet-thought
-      -- gemini-2.0-flash-001
-      -- gemini-2.5-pro
       model = {
-        default = "gemini-2.5-pro",
+        default = default_model,
       },
     },
   })
