@@ -26,22 +26,6 @@ local config = function()
   })
 
   -- python
-  lspconfig.pyright.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    settings = {
-      pyright = {
-        disableOrganizeImports = false,
-        analysis = {
-          useLibraryCodeForTypes = true,
-          autoSearchPaths = true,
-          diagnosticMode = "workspace",
-          autoImportCompletions = true,
-          -- typeCheckingMode = "on",
-        },
-      },
-    },
-  })
   lspconfig.ruff.setup({
     capabilities = capabilities,
     on_attach = on_attach,
