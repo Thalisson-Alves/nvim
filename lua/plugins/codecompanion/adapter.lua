@@ -1,20 +1,6 @@
 local M = {}
 
--- TODO: create a slash_model command to set the model
-local available_models = {
-  "gpt-4o",
-  "gpt-4.1",
-  "o1",
-  "o3-mini",
-  "o4-mini",
-  "claude-3.5-sonnet",
-  "claude-3.7-sonnet",
-  "claude-3.7-sonnet-thought",
-  "gemini-2.0-flash-001",
-  "gemini-2.5-pro",
-}
-
-local default_model = "gpt-4o"
+local default_model = "claude-3.7-sonnet"
 
 ---@param chat CodeCompanion.Chat
 ---@param model string

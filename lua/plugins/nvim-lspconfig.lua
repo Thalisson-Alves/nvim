@@ -26,6 +26,10 @@ local config = function()
   })
 
   -- python
+  lspconfig.pyright.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
   lspconfig.ruff.setup({
     capabilities = capabilities,
     on_attach = on_attach,

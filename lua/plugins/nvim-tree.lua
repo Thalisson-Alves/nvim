@@ -12,10 +12,6 @@ return {
       enable = true,
       show_on_dirs = true,
     },
-    view = {
-      width = 30,
-      side = "left",
-    },
     renderer = {
       root_folder_label = function(path)
         return vim.fn.substitute(
@@ -23,10 +19,6 @@ return {
           [[.*/\(\([^/]\+/\)\{1\}.*\)]], [[\1]], ""
         )
       end
-    },
-    git = {
-      enable = false,
-      ignore = true,
     },
     on_attach = function(bufnr)
       local api = require("nvim-tree.api")
