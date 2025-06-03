@@ -1,6 +1,6 @@
 local M = {}
 
-local default_model = "claude-3.7-sonnet"
+local default_model = "gpt-4.1"
 
 ---@param chat CodeCompanion.Chat
 ---@param model string
