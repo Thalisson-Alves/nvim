@@ -1,6 +1,6 @@
 local M = {}
 
-local default_model = "gpt-4.1"
+local default_model = "gemini-2.5-pro"
 
 ---@param chat CodeCompanion.Chat
 ---@param model string

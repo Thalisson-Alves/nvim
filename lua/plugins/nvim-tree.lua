@@ -20,6 +20,10 @@ return {
         )
       end
     },
+    git = {
+      enable = true,
+      ignore = false,
+    },
     on_attach = function(bufnr)
       local api = require("nvim-tree.api")
 

@@ -1,9 +1,4 @@
 return {
-  {
-    "github/copilot.vim",
-    event = {
-      "BufReadPre",
-      "BufNewFile",
-    },
-  },
+  "github/copilot.vim",
+  lazy = false,
 }
