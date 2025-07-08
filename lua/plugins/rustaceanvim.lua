@@ -4,7 +4,6 @@ return {
   lazy = false,   -- This plugin is already lazy
   config = function()
     vim.g.rustaceanvim = {
-      tools = {},
       server = {
         on_attach = require("config.lsp").on_attach,
       },
