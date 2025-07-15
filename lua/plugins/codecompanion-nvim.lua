@@ -4,23 +4,35 @@ return {
   dependencies = {
     { "nvim-lua/plenary.nvim", branch = "master" },
     "nvim-treesitter/nvim-treesitter",
-    "hakonharnes/img-clip.nvim",
+    {
+      "HakonHarnes/img-clip.nvim",
+      opts = {
+        default = {
+          dir_path = "/tmp/img-clip",
+        },
+        filetypes = {
+          codecompanion = {
+            prompt_for_file_name = false,
+            template = "[Image]($FILE_PATH)",
+            use_absolute_path = true,
+          },
+        },
+      },
+    },
   },
   config = function()
     require("plugins.codecompanion.spinner"):init()
-    local adapter = require("plugins.codecompanion.adapter")
     require("codecompanion").setup({
       strategies = {
         chat = {
-          slash_commands = adapter.get_slash_commands(),
-          adapter = "copilot_compatible",
+          adapter = "copilot",
         },
         inline = {
-          adapter = "copilot_compatible",
+          adapter = "copilot",
         },
-      },
-      adapters = {
-        copilot_compatible = adapter.get_copilot_adapter,
+        cmd = {
+          adapter = "copilot",
+        },
       },
       keymaps = {
         send = {
